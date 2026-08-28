@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+
+# image-slot persistence sidecar (local, per-machine)
+.image-slots.state.json
+
+# local Claude Code state (may contain machine-specific paths / permissions)
+.claude/settings.local.json
+
+# editor / tooling
+node_modules/
+*.log
