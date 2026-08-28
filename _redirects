@@ -1,0 +1,7 @@
+# Keep repo-only files off the deployed site.
+# Supported by both Cloudflare Pages and Netlify.
+/README.md    /404  404
+/_redirects   /404  404
+/.gitignore   /404  404
+/tools/*      /404  404
+/.claude/*    /404  404

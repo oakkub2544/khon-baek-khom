@@ -349,8 +349,27 @@ function cos(a, b) {
   return dot / (Math.sqrt(ma) * Math.sqrt(mb));
 }
 
-// Gate passphrase is NOT stored here — only a PBKDF2-SHA256 digest of it.
-// Share the link as ...html#key=<passphrase> to skip the lock screen.
+// ---------------------------------------------------------------------------
+// Lock screen.
+//
+// The passphrase is NOT here — only a PBKDF2-SHA256 digest of it (fresh random
+// salt, 250k iterations). Rotate it with `python3 tools/set-gate-key.py`, which
+// prompts for the new passphrase and rewrites the block below without the
+// passphrase ever touching disk.
+//
+// The passphrase can also ride along in the link as `...dc.html#key=<passphrase>`
+// (or `?key=`), which skips the lock screen. Either way the key is stripped from
+// the address bar the moment it has been checked, pass or fail, so it stays out
+// of screenshots and the history entry.
+//
+// This is a doormat, not a lock. The digest ships to every visitor inside this
+// file, so a weak passphrase can be recovered offline — the iteration count only
+// buys time. Anyone who can load the page can load its art and read this code.
+// Real access control has to live on the server.
+//
+// crypto.subtle needs a secure context: localhost and https:// work, plain http://
+// on any other host does not, and the gate will refuse every attempt there.
+// ---------------------------------------------------------------------------
 const GATE = {
   salt: "433ade32b477212af4dbc8daf939a268",
   hash: "100b6a85fa5b4a857fb114748b63f250efa0dd7bb4f7292a5039ad480ae21854",
