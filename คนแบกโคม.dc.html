@@ -28,7 +28,7 @@
 </style>
 </helmet>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="rough" x="-6%" y="-30%" width="112%" height="160%"><feTurbulence type="fractalNoise" baseFrequency="0.026" numOctaves="3" seed="9" result="t"></feTurbulence><feDisplacementMap in="SourceGraphic" in2="t" scale="3.4" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap></filter><filter id="rough2" x="-6%" y="-40%" width="112%" height="180%"><feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="3" result="t2"></feTurbulence><feDisplacementMap in="SourceGraphic" in2="t2" scale="2.2" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap></filter></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="rough" x="-6%" y="-30%" width="112%" height="160%"><feTurbulence type="fractalNoise" baseFrequency="0.014" numOctaves="2" seed="9" result="t"></feTurbulence><feDisplacementMap in="SourceGraphic" in2="t" scale="1.3" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap></filter><filter id="rough2" x="-6%" y="-40%" width="112%" height="180%"><feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="3" result="t2"></feTurbulence><feDisplacementMap in="SourceGraphic" in2="t2" scale="1" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap></filter></svg>
 
 <div style="position:relative;min-height:100dvh;background:#04100E;color:#E8F3F1;font-family:Trirong,Georgia,serif;overflow-x:hidden">
 
@@ -45,7 +45,7 @@
 
   <div style="position:fixed;inset:0;z-index:2;pointer-events:none;background:radial-gradient(120% 96% at 50% 44%, transparent 26%, rgba(2,8,7,.5) 74%, #020706 100%);opacity:{{ vignetteOpacity }};transition:opacity 1400ms ease"></div>
 
-  <div style="position:fixed;inset:0;z-index:3;pointer-events:none;opacity:.5;background-image:repeating-linear-gradient(48deg, rgba(232,243,241,.05) 0 1px, transparent 1px 6px), repeating-linear-gradient(-42deg, rgba(232,243,241,.035) 0 1px, transparent 1px 9px);mask-image:radial-gradient(78% 66% at 50% 44%, transparent 34%, black 100%)"></div>
+  <div style="position:fixed;inset:0;z-index:3;pointer-events:none;opacity:.5;background-image:repeating-linear-gradient(48deg, rgba(232,243,241,.035) 0 1px, transparent 1px 8px);mask-image:radial-gradient(78% 66% at 50% 44%, transparent 34%, black 100%)"></div>
 
   <sc-if value="{{ dawnWash }}" hint-placeholder-val="{{ false }}">
     <div style="position:fixed;inset:0;z-index:4;background:#F2FAF9;animation:dawnRise 1600ms ease forwards"></div>
@@ -66,7 +66,7 @@
       <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 0 0">
         <div style="display:flex;align-items:flex-end;gap:7px;height:14px">
           <sc-for list="{{ ticks }}" as="t" hint-placeholder-count="7">
-            <div style="height:{{ t.h }};width:{{ t.w }};background:{{ t.bg }};border-radius:2px;filter:url(#rough2);transition:all 700ms ease"></div>
+            <div style="height:{{ t.h }};width:{{ t.w }};background:{{ t.bg }};border-radius:2px;transition:all 700ms ease"></div>
           </sc-for>
         </div>
         <button type="button" onClick="{{ leave }}" style="background:none;border:0;padding:6px 2px;font-family:Cinzel,Trirong,serif;font-size:.9rem;font-weight:300;letter-spacing:.02em;color:{{ dimColor }};cursor:pointer;transition:color 200ms ease" style-hover="color:{{ accentColor }}">ออกจากเรื่อง</button>
@@ -77,7 +77,7 @@
       <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:32px 0 28px;animation:riseIn 900ms ease both">
         <div style="font-size:.88rem;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:#00C4B3;margin-bottom:20px">ooca · private preview</div>
         <h1 style="margin:0 0 18px;font-family:Cinzel,Trirong,serif;font-weight:400;font-size:min(clamp(1.9rem,8vw,2.5rem),8dvh);line-height:1.3;letter-spacing:.02em;color:#E8F3F1">ใส่รหัสก่อนเข้าเรื่อง</h1>
-        <div style="width:64px;height:2px;background:#14332E;filter:url(#rough2);margin-bottom:22px"></div>
+        <div style="width:64px;height:2px;background:#14332E;margin-bottom:22px"></div>
         <p style="margin:0 0 24px;font-family:Trirong,serif;font-weight:300;font-size:clamp(1.1rem,4vw,1.28rem);line-height:1.9;color:#B3EDE8;opacity:.8">งานชิ้นนี้ยังไม่เปิดสาธารณะ</p>
         <form onSubmit="{{ submit }}" style="display:flex;flex-direction:column;gap:14px;max-width:22rem">
           <input type="password" value="{{ pwd }}" onChange="{{ onPwd }}" onKeyDown="{{ onPwdKey }}" placeholder="รหัสผ่าน" autoComplete="off" style="width:100%;box-sizing:border-box;background:rgba(10,29,26,.72);border:1.4px solid {{ lockBorder }};color:#E8F3F1;font-family:Trirong,serif;font-size:1.06rem;font-weight:400;letter-spacing:.14em;padding:14px 16px;border-radius:14px 11px 15px 12px/12px 15px 11px 14px;outline:none;transition:border-color 220ms ease" style-focus="border-color:#00C4B3">
@@ -93,7 +93,7 @@
       <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:32px 0 28px;animation:riseIn 900ms ease both">
         <div style="font-size:.88rem;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:#00C4B3;margin-bottom:20px">นิทานสองนาที</div>
         <h1 style="margin:0 0 22px;font-family:Cinzel,Trirong,serif;font-weight:400;font-size:min(clamp(2.5rem,12vw,3.6rem),9dvh);line-height:1.24;letter-spacing:.02em;color:#E8F3F1">คนแบกโคม</h1>
-        <div style="width:64px;height:2px;background:#14332E;filter:url(#rough2);margin-bottom:22px"></div>
+        <div style="width:64px;height:2px;background:#14332E;margin-bottom:22px"></div>
         <div style="display:flex;flex-direction:column;gap:min(14px,1.6dvh);font-family:Trirong,serif;font-weight:300;font-size:min(clamp(1.24rem,4.4vw,1.5rem),3.4dvh);line-height:1.8">
           <p style="margin:0">คุณเดินอยู่ในดินแดนที่มืดมานาน นานจนจำไม่ได้ว่าเริ่มเดินตอนไหน</p>
           <p style="margin:0">ในมือคุณมีโคมอยู่ดวงหนึ่ง มีคนบอกไว้นานแล้วว่า <span style="color:#B3EDE8">ห้ามดับ ห้ามวาง ห้ามให้ใคร</span></p>
@@ -114,12 +114,17 @@
             <p style="margin:0;display:{{ l.d }};opacity:{{ l.op }}"><span>{{ l.a }}</span><span style="color:#B3EDE8">{{ l.b }}</span><span>{{ l.c }}</span></p>
           </sc-for>
         </div>
-        <div role="img" style="flex:none;width:{{ mascotW }};aspect-ratio:279/217;margin-top:4px;background-image:{{ mascotBg }};background-size:contain;background-position:center;background-repeat:no-repeat;opacity:.9;filter:saturate(.82) brightness(.94) drop-shadow(0 0 22px rgba(0,196,179,.28))"></div>
+        <div style="flex:none;width:{{ mascotW }};margin-top:4px;opacity:.9;filter:saturate(.82) brightness(.94) drop-shadow(0 0 22px rgba(0,196,179,.28))">
+          <img src="art/m-cry.png" alt="" style="display:{{ mascotD1 }};width:100%;height:auto"></img>
+          <img src="art/m-hug.png" alt="" style="display:{{ mascotD2 }};width:100%;height:auto"></img>
+          <img src="art/m-wai.png" alt="" style="display:{{ mascotD3 }};width:100%;height:auto"></img>
+          <img src="art/m-chat.png" alt="" style="display:{{ mascotD5 }};width:100%;height:auto"></img>
         </div>
-        <div style="height:1px;background:#14332E;filter:url(#rough2);margin:26px 0 22px;opacity:.8"></div>
+        </div>
+        <div style="height:1px;background:#14332E;margin:26px 0 22px;opacity:.8"></div>
         <div style="display:flex;flex-direction:column;gap:11px;animation:riseIn 900ms ease 520ms both">
           <sc-for list="{{ choices }}" as="c" hint-placeholder-count="4">
-            <button type="button" onClick="{{ c.pick }}" disabled="{{ locked }}" style="position:relative;display:flex;gap:13px;align-items:flex-start;text-align:left;width:100%;background:rgba(10,29,26,.6);border:0;color:#E8F3F1;font-family:Trirong,serif;font-size:1.02rem;font-weight:400;line-height:1.85;padding:14px 17px;border-radius:15px 12px 16px 13px/13px 16px 12px 15px;cursor:pointer;opacity:{{ choiceOpacity }};transition:transform 220ms ease,background 220ms ease,box-shadow 220ms ease" style-before="content:'';position:absolute;inset:0;border:1.4px solid #14332E;border-radius:15px 12px 16px 13px/13px 16px 12px 15px;filter:url(#rough);pointer-events:none" style-hover="transform:translateX(3px);background:rgba(0,196,179,.07);box-shadow:inset 0 0 0 1.4px rgba(0,196,179,.5)" style-focus="outline:2px solid #00C4B3;outline-offset:3px">
+            <button type="button" onClick="{{ c.pick }}" disabled="{{ locked }}" style="position:relative;display:flex;gap:13px;align-items:flex-start;text-align:left;width:100%;background:rgba(10,29,26,.6);border:0;color:#E8F3F1;font-family:Trirong,serif;font-size:1.02rem;font-weight:400;line-height:1.85;padding:14px 17px;border-radius:15px 12px 16px 13px/13px 16px 12px 15px;cursor:pointer;opacity:{{ choiceOpacity }};transition:transform 220ms ease,background 220ms ease,box-shadow 220ms ease" style-before="content:'';position:absolute;inset:0;border:1.4px solid #14332E;border-radius:15px 12px 16px 13px/13px 16px 12px 15px;pointer-events:none" style-hover="transform:translateX(3px);background:rgba(0,196,179,.07);box-shadow:inset 0 0 0 1.4px rgba(0,196,179,.5)" style-focus="outline:2px solid #00C4B3;outline-offset:3px">
               <span style="flex:none;width:5px;height:5px;border-radius:50%;background:#2C5B54;margin-top:12px"></span>
               <span>{{ c.label }}</span>
             </button>
@@ -138,10 +143,10 @@
         </div>
         <img src="art/m-joy.png" alt="" style="flex:none;width:112px;height:auto;margin-top:4px"></img>
         </div>
-        <div style="height:1px;background:#DBF0EE;filter:url(#rough2);margin:26px 0 22px"></div>
+        <div style="height:1px;background:#DBF0EE;margin:26px 0 22px"></div>
         <div style="display:flex;flex-direction:column;gap:11px;animation:riseIn 1200ms ease 900ms both">
           <sc-for list="{{ choices }}" as="c" hint-placeholder-count="4">
-            <button type="button" onClick="{{ c.pick }}" disabled="{{ locked }}" style="position:relative;display:flex;gap:13px;align-items:flex-start;text-align:left;width:100%;background:rgba(255,255,255,.6);border:0;color:#0E2925;font-family:Trirong,serif;font-size:1.02rem;font-weight:400;line-height:1.85;padding:14px 17px;border-radius:15px 12px 16px 13px/13px 16px 12px 15px;cursor:pointer;opacity:{{ choiceOpacity }};transition:transform 220ms ease,background 220ms ease,box-shadow 220ms ease" style-before="content:'';position:absolute;inset:0;border:1.4px solid #DBF0EE;border-radius:15px 12px 16px 13px/13px 16px 12px 15px;filter:url(#rough);pointer-events:none" style-hover="transform:translateX(3px);background:rgba(219,240,238,.55);box-shadow:inset 0 0 0 1.4px rgba(0,121,107,.45)" style-focus="outline:2px solid #00796B;outline-offset:3px">
+            <button type="button" onClick="{{ c.pick }}" disabled="{{ locked }}" style="position:relative;display:flex;gap:13px;align-items:flex-start;text-align:left;width:100%;background:rgba(255,255,255,.6);border:0;color:#0E2925;font-family:Trirong,serif;font-size:1.02rem;font-weight:400;line-height:1.85;padding:14px 17px;border-radius:15px 12px 16px 13px/13px 16px 12px 15px;cursor:pointer;opacity:{{ choiceOpacity }};transition:transform 220ms ease,background 220ms ease,box-shadow 220ms ease" style-before="content:'';position:absolute;inset:0;border:1.4px solid #DBF0EE;border-radius:15px 12px 16px 13px/13px 16px 12px 15px;pointer-events:none" style-hover="transform:translateX(3px);background:rgba(219,240,238,.55);box-shadow:inset 0 0 0 1.4px rgba(0,121,107,.45)" style-focus="outline:2px solid #00796B;outline-offset:3px">
               <span style="flex:none;width:5px;height:5px;border-radius:50%;background:#9EC4BF;margin-top:12px"></span>
               <span>{{ c.label }}</span>
             </button>
@@ -155,14 +160,14 @@
         <img src="art/mindfull-logo.png" alt="mindfull" style="display:block;width:132px;height:auto;margin-bottom:24px">
         <div style="font-size:.88rem;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:#00796B;margin-bottom:12px">คืนนี้ คุณคือ</div>
         <h1 style="margin:0 0 22px;font-family:Cinzel,Trirong,serif;font-weight:500;font-size:clamp(2rem,7.6vw,2.7rem);line-height:1.24;color:#0E2925">{{ taleName }}</h1>
-        <div style="width:64px;height:2px;background:#DBF0EE;filter:url(#rough2);margin-bottom:26px"></div>
+        <div style="width:64px;height:2px;background:#DBF0EE;margin-bottom:26px"></div>
         <div style="display:flex;flex-direction:column;gap:16px;font-family:Trirong,serif;font-weight:300;font-size:clamp(1.16rem,4.2vw,1.36rem);line-height:1.95;color:#0E2925">
           <p style="margin:0">{{ paraA }}</p>
           <p style="margin:0">{{ paraB }}</p>
         </div>
 
         <div style="display:flex;gap:16px;margin:34px 0 0">
-          <div style="flex:none;width:3px;background:#00C4B3;border-radius:2px;filter:url(#rough2)"></div>
+          <div style="flex:none;width:3px;background:#00C4B3;border-radius:2px;"></div>
           <div style="padding:2px 0">
             <div style="font-size:.88rem;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:#00796B;margin-bottom:9px">จากทางที่คุณเลือกจริง</div>
             <p style="margin:0;font-family:Trirong,serif;font-weight:400;font-size:1.14rem;line-height:1.9;color:#0E2925"><span>{{ patA }}</span><span style="font-weight:500;color:#00796B">{{ patN }}</span><span>{{ patB }}</span></p>
@@ -170,7 +175,7 @@
         </div>
 
         <div style="position:relative;margin:30px 0 0;padding:20px 20px 22px;background:rgba(255,255,255,.72);border-radius:16px 13px 17px 14px/14px 17px 13px 16px">
-          <div style="position:absolute;inset:0;border:1.4px solid #DBF0EE;border-radius:16px 13px 17px 14px/14px 17px 13px 16px;filter:url(#rough);pointer-events:none"></div>
+          <div style="position:absolute;inset:0;border:1.4px solid #DBF0EE;border-radius:16px 13px 17px 14px/14px 17px 13px 16px;pointer-events:none"></div>
           <div style="font-size:.88rem;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:#00796B;margin-bottom:10px">พรุ่งนี้ ลองสักอย่าง</div>
           <p style="margin:0;font-family:Trirong,serif;font-weight:400;font-size:1.02rem;line-height:1.85;color:#0E2925">{{ tomorrow }}</p>
         </div>
@@ -410,17 +415,26 @@ function keyFromUrl() {
   return grab(location.hash) || grab(location.search);
 }
 
+// Read at load, before anything mounts, and remember the verdict at module
+// scope. The runtime swaps in a fresh logic instance while hydrating, so a
+// setState from an in-flight check can land on an instance that is already
+// being discarded; when that happens the remount finds the answer here rather
+// than going back to a URL the previous mount has already scrubbed.
+const URL_KEY = keyFromUrl();
+let urlKeyOk = null;
+
 class Component extends DCLogic {
   state = { screen: "lock", scene: 0, picks: [], locked: false, copied: false, pwd: "", pwdErr: false };
 
   componentDidMount() {
-    const fromUrl = keyFromUrl();
-    if (!fromUrl) return;
-    checkKey(fromUrl).then(ok => {
-      // scrub the key from the address bar either way, so it stays out of
-      // screenshots and the back/forward history entry
-      try { history.replaceState(null, "", location.pathname); } catch (e) {}
+    if (urlKeyOk === true) return this.setState({ screen: "cover", pwd: "", pwdErr: false });
+    if (urlKeyOk === false || !URL_KEY) return;
+    checkKey(URL_KEY).then(ok => {
+      urlKeyOk = ok;
       if (ok) this.setState({ screen: "cover", pwd: "", pwdErr: false });
+      // only once the verdict is recorded — scrubbing earlier would throw the
+      // key away while the unlock could still be lost to a swap
+      try { history.replaceState(null, "", location.pathname); } catch (e) {}
     }).catch(() => {});
   }
 
@@ -521,15 +535,13 @@ class Component extends DCLogic {
       errDisplay: s.pwdErr ? "block" : "none",
       lockBorder: s.pwdErr ? "#00C4B3" : "#14332E",
       onPwd: (e) => this.setState({ pwd: e.target.value, pwdErr: false }),
-      // the form's onSubmit never fires under dc-runtime, so Enter is
-      // wired on the field itself rather than left dead
       onPwdKey: (e) => { if (e.key === "Enter") this.tryUnlock(e); },
       submit: (e) => this.tryUnlock(e),
 
-      // as a CSS background rather than an <img src>: a raw {{ }} in src is a
-      // URL to the parser, so the browser fetched the placeholder itself and
-      // 404'd on every load, before the runtime ever hydrated it
-      mascotBg: "url('" + (["art/m-cry.png", "art/m-hug.png", "art/m-wai.png", "art/m-cry.png", "art/m-chat.png", "art/m-hug.png", "art/m-joy.png"][s.scene] || "art/m-cry.png") + "')",
+      mascotD1: inScene && (s.scene === 0 || s.scene === 3) ? "block" : "none",
+      mascotD2: inScene && (s.scene === 1 || s.scene === 5) ? "block" : "none",
+      mascotD3: inScene && s.scene === 2 ? "block" : "none",
+      mascotD5: inScene && s.scene === 4 ? "block" : "none",
       mascotW: ["78px", "92px", "84px", "78px", "88px", "92px", "112px"][s.scene] || "84px",
       isDarkScene: inScene && !dawn,
       isDawnScene: dawn,
