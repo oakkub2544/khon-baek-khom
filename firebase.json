@@ -1,0 +1,23 @@
+{
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "**/__pycache__/**",
+      "README.md",
+      "_redirects",
+      "tools/**",
+      "*.log"
+    ],
+    "rewrites": [
+      {
+        "source": "/",
+        "destination": "/คนแบกโคม.dc.html"
+      }
+    ],
+    "cleanUrls": false,
+    "trailingSlash": false
+  }
+}
