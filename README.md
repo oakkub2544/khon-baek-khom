@@ -34,19 +34,3 @@ python3 -m http.server 8777
   ถ้าคะแนนเบาเกินไปหรือสองอันดับแรกใกล้กันมาก จะตกไปที่ "นิทานที่ยังเล่าไม่จบ"
 - `pattern()` — อ่านพฤติกรรมจริงจากลำดับที่เลือก (เลือกเพื่อตัวเองกี่ครั้ง, เดินคนเดียวกี่ครั้ง,
   เลือกไม่มองกี่ครั้ง) แยกจากผลนิทาน
-
-## ถ้าจะ deploy
-
-host ไฟล์ static ทั่วไป (Cloudflare Pages / Netlify) เสิร์ฟ **ทุกไฟล์ใน repo** ต่อให้ repo เป็น private
-แปลว่า `README.md` กับ `tools/` จะเปิดดูได้จากอินเทอร์เน็ตถ้าไม่กัน ในรีโปมี `_redirects` กันไว้ให้แล้ว
-(ใช้ได้ทั้ง Cloudflare Pages และ Netlify)
-
-ถ้าย้าย host เจ้าอื่นที่ไม่รู้จัก `_redirects` ให้ย้ายไฟล์ที่จะเสิร์ฟจริงไปไว้ใน subdirectory
-แล้วตั้งอันนั้นเป็น publish directory แทน — กันได้แน่นอนกว่า
-
-ต้องเป็น `https://` ด้วย ไม่งั้นหน้า lock ใช้ไม่ได้ (`crypto.subtle` ต้องการ secure context)
-
-## ที่ยังค้าง
-
-- กด Enter ในช่องรหัสไม่ submit ต้องคลิกปุ่ม "ปลดล็อก" (`onSubmit` ไม่ยิงใน dc-runtime)
-- console ขึ้น `ERR_INVALID_URL` — มาจาก `image-slot.js` หา sidecar ที่ไม่มีนอก omelette runtime ไม่กระทบการใช้งาน
