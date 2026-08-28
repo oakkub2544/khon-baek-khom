@@ -10,3 +10,7 @@
 # editor / tooling
 node_modules/
 *.log
+
+# python
+__pycache__/
+*.py[cod]
