@@ -58,7 +58,7 @@
     <div style="position:fixed;inset:0;z-index:5;pointer-events:none;background:linear-gradient(180deg, rgba(242,250,249,.72) 0%, rgba(242,250,249,.42) 46%, rgba(242,250,249,.86) 100%)"></div>
   </sc-if>
 
-  <div style="position:fixed;inset:0;z-index:40;pointer-events:none;mix-blend-mode:overlay;opacity:{{ grainOpacity }};background-image:url(&quot;data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='240' height='240' filter='url(%23n)' opacity='0.6'/></svg>&quot;);background-size:240px 240px"></div>
+  <div style="position:fixed;inset:0;z-index:40;pointer-events:none;mix-blend-mode:overlay;opacity:{{ grainOpacity }};background-image:url(&quot;data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='240'%20height='240'%3E%3Cfilter%20id='n'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.85'%20numOctaves='4'%20stitchTiles='stitch'/%3E%3CfeColorMatrix%20type='saturate'%20values='0'/%3E%3C/filter%3E%3Crect%20width='240'%20height='240'%20filter='url%28%23n%29'%20opacity='0.6'/%3E%3C/svg%3E&quot;);background-size:240px 240px"></div>
 
   <main style="position:relative;z-index:10;max-width:33rem;margin:0 auto;padding:0 20px 64px;min-height:100dvh;display:flex;flex-direction:column">
 
@@ -80,7 +80,7 @@
         <div style="width:64px;height:2px;background:#14332E;filter:url(#rough2);margin-bottom:22px"></div>
         <p style="margin:0 0 24px;font-family:Trirong,serif;font-weight:300;font-size:clamp(1.1rem,4vw,1.28rem);line-height:1.9;color:#B3EDE8;opacity:.8">งานชิ้นนี้ยังไม่เปิดสาธารณะ</p>
         <form onSubmit="{{ submit }}" style="display:flex;flex-direction:column;gap:14px;max-width:22rem">
-          <input type="password" value="{{ pwd }}" onChange="{{ onPwd }}" placeholder="รหัสผ่าน" autoComplete="off" style="width:100%;box-sizing:border-box;background:rgba(10,29,26,.72);border:1.4px solid {{ lockBorder }};color:#E8F3F1;font-family:Trirong,serif;font-size:1.06rem;font-weight:400;letter-spacing:.14em;padding:14px 16px;border-radius:14px 11px 15px 12px/12px 15px 11px 14px;outline:none;transition:border-color 220ms ease" style-focus="border-color:#00C4B3">
+          <input type="password" value="{{ pwd }}" onChange="{{ onPwd }}" onKeyDown="{{ onPwdKey }}" placeholder="รหัสผ่าน" autoComplete="off" style="width:100%;box-sizing:border-box;background:rgba(10,29,26,.72);border:1.4px solid {{ lockBorder }};color:#E8F3F1;font-family:Trirong,serif;font-size:1.06rem;font-weight:400;letter-spacing:.14em;padding:14px 16px;border-radius:14px 11px 15px 12px/12px 15px 11px 14px;outline:none;transition:border-color 220ms ease" style-focus="border-color:#00C4B3">
           <div style="display:{{ errDisplay }};font-family:Trirong,serif;font-size:.94rem;font-weight:400;color:#B3EDE8;opacity:.85">รหัสไม่ถูกต้อง ลองอีกครั้ง</div>
           <div>
             <button type="submit" style="background:#00C4B3;color:#04100E;border:0;font-family:Cinzel,Trirong,serif;font-size:1rem;font-weight:500;letter-spacing:.08em;padding:15px 34px;border-radius:999px;cursor:pointer;transition:background 220ms ease,transform 220ms ease" style-hover="background:#B3EDE8;transform:translateY(-1px)" style-focus="outline:2px solid #B3EDE8;outline-offset:3px">ปลดล็อก</button>
@@ -114,7 +114,7 @@
             <p style="margin:0;display:{{ l.d }};opacity:{{ l.op }}"><span>{{ l.a }}</span><span style="color:#B3EDE8">{{ l.b }}</span><span>{{ l.c }}</span></p>
           </sc-for>
         </div>
-        <img src="{{ mascotSrc }}" alt="" style="flex:none;width:{{ mascotW }};height:auto;margin-top:4px;opacity:.9;filter:saturate(.82) brightness(.94) drop-shadow(0 0 22px rgba(0,196,179,.28))"></img>
+        <div role="img" style="flex:none;width:{{ mascotW }};aspect-ratio:279/217;margin-top:4px;background-image:{{ mascotBg }};background-size:contain;background-position:center;background-repeat:no-repeat;opacity:.9;filter:saturate(.82) brightness(.94) drop-shadow(0 0 22px rgba(0,196,179,.28))"></div>
         </div>
         <div style="height:1px;background:#14332E;filter:url(#rough2);margin:26px 0 22px;opacity:.8"></div>
         <div style="display:flex;flex-direction:column;gap:11px;animation:riseIn 900ms ease 520ms both">
@@ -521,9 +521,15 @@ class Component extends DCLogic {
       errDisplay: s.pwdErr ? "block" : "none",
       lockBorder: s.pwdErr ? "#00C4B3" : "#14332E",
       onPwd: (e) => this.setState({ pwd: e.target.value, pwdErr: false }),
+      // the form's onSubmit never fires under dc-runtime, so Enter is
+      // wired on the field itself rather than left dead
+      onPwdKey: (e) => { if (e.key === "Enter") this.tryUnlock(e); },
       submit: (e) => this.tryUnlock(e),
 
-      mascotSrc: ["art/m-cry.png", "art/m-hug.png", "art/m-wai.png", "art/m-cry.png", "art/m-chat.png", "art/m-hug.png", "art/m-joy.png"][s.scene] || "art/m-cry.png",
+      // as a CSS background rather than an <img src>: a raw {{ }} in src is a
+      // URL to the parser, so the browser fetched the placeholder itself and
+      // 404'd on every load, before the runtime ever hydrated it
+      mascotBg: "url('" + (["art/m-cry.png", "art/m-hug.png", "art/m-wai.png", "art/m-cry.png", "art/m-chat.png", "art/m-hug.png", "art/m-joy.png"][s.scene] || "art/m-cry.png") + "')",
       mascotW: ["78px", "92px", "84px", "78px", "88px", "92px", "112px"][s.scene] || "84px",
       isDarkScene: inScene && !dawn,
       isDawnScene: dawn,
